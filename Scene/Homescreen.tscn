@@ -1,4 +1,15 @@
-[gd_scene format=3 uid="uid://c0y1ldd7gbhqr"]
+[gd_scene load_steps=11 format=3 uid="uid://c0y1ldd7gbhqr"]
+
+[ext_resource type="Script" uid="uid://c6o7obypkssqu" path="res://Scene/homescreen.gd" id="1_teo4b"]
+[ext_resource type="Texture2D" uid="uid://hr1mlj4ibwql" path="res://Assets/Play (2).png" id="2_twlym"]
+[ext_resource type="Texture2D" uid="uid://b1pbxsqfsy87s" path="res://Assets/Play_clicked.png" id="3_5s3lc"]
+[ext_resource type="Texture2D" uid="uid://b4w2m3ls61isj" path="res://Assets/play_hover.png" id="4_8s6ue"]
+[ext_resource type="Texture2D" uid="uid://dn242ro6aloux" path="res://Assets/setting.png" id="5_fd04c"]
+[ext_resource type="Texture2D" uid="uid://sl2ihw02vygx" path="res://Assets/setting_clicked.png" id="6_s4r4x"]
+[ext_resource type="Texture2D" uid="uid://dw7kv6mtlabq3" path="res://Assets/setting_hover.png" id="7_07okn"]
+[ext_resource type="Texture2D" uid="uid://cwb043bk4i26" path="res://Assets/quit.png" id="8_a8ec2"]
+[ext_resource type="Texture2D" uid="uid://b585pac33uiyl" path="res://Assets/quit_clicked.png" id="9_2grpg"]
+[ext_resource type="Texture2D" uid="uid://baya00omwjs87" path="res://Assets/quit_hover.png" id="10_dy736"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,9 +18,55 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_teo4b")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(800, 600)
 layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
+offset_left = -14.0
+offset_top = 1.0
+offset_right = 1266.0
+offset_bottom = 721.0
+color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -174.0
+offset_top = -258.0
+offset_right = 1254.0
+offset_bottom = 1401.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Play" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_twlym")
+texture_pressed = ExtResource("3_5s3lc")
+texture_hover = ExtResource("4_8s6ue")
+stretch_mode = 4
+
+[node name="Setting" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_fd04c")
+texture_pressed = ExtResource("6_s4r4x")
+texture_hover = ExtResource("7_07okn")
+
+[node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_a8ec2")
+texture_pressed = ExtResource("9_2grpg")
+texture_hover = ExtResource("10_dy736")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
