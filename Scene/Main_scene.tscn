@@ -103,7 +103,7 @@ script = ExtResource("3_oeblo")
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("4_bi33i")
 normal_zoom = Vector2(1.4, 1.4)
-standoff_zoom = Vector2(2, 2)
+standoff_zoom = Vector2(1.6, 1.6)
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_lax48")]
 position = Vector2(-276, 105)

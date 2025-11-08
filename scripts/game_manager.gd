@@ -68,6 +68,7 @@ func start_stand_off():
 	
 	
 	camera.enter_standoff(current_enemy)
+	cinematic_bars.show_bars()
 	standoff_timer.start(STANDOFF_DURATION)
 
 # Timer stand off selesai - enemy mulai telegraph
@@ -95,7 +96,6 @@ func _on_timing_window_timer_timeout():
 	if current_state != GameState.TIMING_WINDOW:
 		return
 		
-	print("Timing window expired - Player too slow!")
 	player.disable_attack_window()
 	handle_failed_attack()
 
