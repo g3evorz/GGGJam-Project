@@ -51,6 +51,7 @@ func play_defeated_animation():
 func play_attack_animation():
 	animated_sprite.play("Attack")
 
+
 # ========================================
 # TELEGRAPH LOGIC (CUE UNTUK PLAYER)
 # ========================================
@@ -80,6 +81,9 @@ func show_telegraph():
 		# Normal
 		tween_flash.tween_property(animated_sprite, "modulate", Color(1.0, 1.0, 1.0), 0.1).set_delay(0.1)
 	
+
+	
+
 	# === AUDIO CUE ===
 	# Jika ada AudioStreamPlayer untuk sound effect
 	if has_node("TelegraphSound"):
