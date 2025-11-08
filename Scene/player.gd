@@ -11,8 +11,4 @@ func _physics_process(delta: float) -> void:
 	# Gerak otomatis ke kanan
 	velocity.x = SPEED
 
-	# Lompat jika tombol ditekan dan sedang di lantai
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
 	move_and_slide()
