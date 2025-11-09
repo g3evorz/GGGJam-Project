@@ -1,10 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdwd5vsqnk5nl"]
+[gd_scene load_steps=18 format=3 uid="uid://cdwd5vsqnk5nl"]
 
 [ext_resource type="PackedScene" uid="uid://85h4bodi3kdg" path="res://Scene/Player.tscn" id="1_lax48"]
 [ext_resource type="PackedScene" uid="uid://c8nuyutlswcx2" path="res://Scene/Enemies.tscn" id="2_6ihgc"]
 [ext_resource type="Script" uid="uid://bf4y3htjqynuv" path="res://scripts/game_manager.gd" id="3_oeblo"]
 [ext_resource type="Script" uid="uid://r4461fqv841u" path="res://dynamic_cam.gd" id="4_bi33i"]
+[ext_resource type="Texture2D" uid="uid://bhnkq3xfa8xlv" path="res://Assets/background.png" id="4_jkduj"]
 [ext_resource type="Script" uid="uid://cff77fv33flsg" path="res://scripts/cinematic_bars.gd" id="5_g3qbw"]
+[ext_resource type="Texture2D" uid="uid://dl7btm4cbmdak" path="res://Assets/Tile.png" id="5_yn178"]
+[ext_resource type="Script" uid="uid://u2em3wk0of6b" path="res://scripts/pause_menu.gd" id="7_xjs1k"]
+[ext_resource type="Texture2D" uid="uid://dlml8kv42d486" path="res://Assets/pause_menu.png" id="8_jkduj"]
+[ext_resource type="Texture2D" uid="uid://cvts0hyf7ebhw" path="res://Assets/continue_button.png" id="9_nt81k"]
+[ext_resource type="Texture2D" uid="uid://bi0ga8rjb03ir" path="res://Assets/home_button.png" id="10_vdm1f"]
+[ext_resource type="Texture2D" uid="uid://bbuobnjskjbqi" path="res://Assets/retry_button.png" id="11_emxjo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kx7ml"]
 size = Vector2(8194.5, 204)
@@ -105,20 +112,41 @@ script = ExtResource("4_bi33i")
 normal_zoom = Vector2(1.4, 1.4)
 standoff_zoom = Vector2(1.6, 1.6)
 
+[node name="Background" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Background"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+z_index = 1
+motion_mirroring = Vector2(1520, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxLayer"]
+position = Vector2(-629, 117)
+texture = ExtResource("5_yn178")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+motion_mirroring = Vector2(2304, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(-925, -711)
+texture = ExtResource("4_jkduj")
+centered = false
+
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_lax48")]
-position = Vector2(-276, 105)
+position = Vector2(-266, 87)
 
 [node name="Enemy1" parent="." groups=["enemies"] instance=ExtResource("2_6ihgc")]
-position = Vector2(565, 105)
+position = Vector2(567, 107)
 
 [node name="Enemy2" parent="." groups=["enemies"] instance=ExtResource("2_6ihgc")]
-position = Vector2(1265, 105)
+position = Vector2(1265, 109)
 
 [node name="Enemy3" parent="." groups=["enemies"] instance=ExtResource("2_6ihgc")]
-position = Vector2(2086, 105)
+position = Vector2(2086, 110)
 
 [node name="Enemy4" parent="." groups=["enemies"] instance=ExtResource("2_6ihgc")]
-position = Vector2(3370, 105)
+position = Vector2(3375, 110)
 
 [node name="Ground" type="StaticBody2D" parent="."]
 
@@ -141,6 +169,7 @@ anchor_right = 1.0
 offset_top = -175.0
 grow_horizontal = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="BottBar" type="ColorRect" parent="CinematicBars"]
 anchors_preset = 12
@@ -151,8 +180,83 @@ offset_bottom = 175.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CinematicBars"]
 libraries = {
 &"": SubResource("AnimationLibrary_w1tng")
 }
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+process_mode = 2
+script = ExtResource("7_xjs1k")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+custom_minimum_size = Vector2(1600, 900)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.14902)
+
+[node name="marginContainer" type="MarginContainer" parent="PauseMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/marginContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+texture = ExtResource("8_jkduj")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu"]
+custom_minimum_size = Vector2(400, 200)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.0
+offset_top = -87.0
+offset_right = 249.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="resume" type="TextureButton" parent="PauseMenu/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("9_nt81k")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="home" type="TextureButton" parent="PauseMenu/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("10_vdm1f")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="restart" type="TextureButton" parent="PauseMenu/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("11_emxjo")
+ignore_texture_size = true
+stretch_mode = 4
+
+[connection signal="pressed" from="PauseMenu/MarginContainer/HBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/HBoxContainer/home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/HBoxContainer/restart" to="." method="_on_restart_pressed"]

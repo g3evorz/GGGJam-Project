@@ -9,7 +9,7 @@ var game_manager = null
 @onready var telegraph_timer = $TelegraphTimer
 
 # Konstanta
-const TELEGRAPH_DURATION = 0.3  # Durasi visual telegraph (dalam detik)
+const TELEGRAPH_DURATION = 0.25  # Durasi visual telegraph (dalam detik)
 
 func _ready() -> void:
 	
@@ -35,19 +35,17 @@ func play_defeated_animation():
 	if not animated_sprite:
 		return
 	
-	# Fade out effect dengan tween
+	animated_sprite.play("Death")
 	var tween = create_tween()
 	tween.tween_property(animated_sprite, "modulate:a", 0.0, 0.5).set_delay(0.2)
 	
-	# Disable collision agar tidak menghalangi player
 	set_collision_layer_value(1, false)
 	set_collision_mask_value(1, false)
 	
-	# Hapus enemy setelah animasi selesai
+
 	await get_tree().create_timer(0.7).timeout
 	queue_free()
 
-# Dipanggil saat enemy menyerang (player gagal)
 func play_attack_animation():
 	animated_sprite.play("Attack")
 
@@ -59,20 +57,11 @@ func play_attack_animation():
 # Dipanggil oleh game_manager untuk mulai telegraph
 func show_telegraph():
 	is_telegraphing = true
-	print(name, " showing TELEGRAPH - VISUAL CUE!")
 	
 	# === VISUAL EFFECT 1: Scale Pop ===
-	if animated_sprite:
-		var tween_scale = create_tween()
-		tween_scale.set_parallel(true)
-		
-		# Membesar
-		tween_scale.tween_property(animated_sprite, "scale", Vector2(1.3, 1.3), 0.15)
-		# Kembali normal
-		tween_scale.tween_property(animated_sprite, "scale", Vector2(1.0, 1.0), 0.15).set_delay(0.15)
 	
-	# === VISUAL EFFECT 2: Flash/Brightness ===
 	if animated_sprite:
+		animated_sprite.play("Telegraph")
 		var tween_flash = create_tween()
 		tween_flash.set_parallel(true)
 		

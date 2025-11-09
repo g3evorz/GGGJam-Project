@@ -1,60 +1,99 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8nuyutlswcx2"]
+[gd_scene load_steps=14 format=3 uid="uid://c8nuyutlswcx2"]
 
-[ext_resource type="Texture2D" uid="uid://dopra7c48h7v6" path="res://placeholder_texture/IDLE.png" id="1_hm8ri"]
 [ext_resource type="Script" uid="uid://cw86vcpks2l3l" path="res://scripts/enemy.gd" id="1_l1wno"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l1wno"]
-atlas = ExtResource("1_hm8ri")
-region = Rect2(0, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u6np6"]
-atlas = ExtResource("1_hm8ri")
-region = Rect2(96, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_goxp7"]
-atlas = ExtResource("1_hm8ri")
-region = Rect2(192, 0, 96, 96)
+[ext_resource type="Texture2D" uid="uid://bqp777cpdv2eb" path="res://Assets/Enemy stand n slash/Enemy stand n slash/1.png" id="2_4px1m"]
+[ext_resource type="Texture2D" uid="uid://ca83eomwiy7aq" path="res://Assets/Enemy stand n slash/Enemy stand n slash/2.png" id="3_7e3u0"]
+[ext_resource type="Texture2D" uid="uid://0lqnhco4o3fl" path="res://Assets/Enemy stand n slash/Enemy stand n slash/3.png" id="4_kgahj"]
+[ext_resource type="Texture2D" uid="uid://de80d735hlqxc" path="res://Assets/Enemy stand n slash/Enemy stand n slash/4.png" id="5_gkxrl"]
+[ext_resource type="Texture2D" uid="uid://c5w6p4y0eplde" path="res://Assets/Enemy stand n slash/Enemy stand n slash/5.png" id="6_64woy"]
+[ext_resource type="Texture2D" uid="uid://bqsscvw21smhb" path="res://Assets/Enemy stand n slash/Enemy stand n slash/6.png" id="7_ujqvy"]
+[ext_resource type="Texture2D" uid="uid://bwhji23jav8a8" path="res://Assets/Enemy stand n slash/Enemy stand n slash/hit.png" id="8_7e3u0"]
+[ext_resource type="Texture2D" uid="uid://bybpgvm2plw7u" path="res://Assets/Enemy stand n slash/telegraph/tele_1.png" id="9_gkxrl"]
+[ext_resource type="Texture2D" uid="uid://mkdaxe8qx5br" path="res://Assets/Enemy stand n slash/telegraph/tele_2.png" id="10_64woy"]
+[ext_resource type="Texture2D" uid="uid://bbxstj30wn60w" path="res://Assets/Enemy stand n slash/telegraph/tele_3.png" id="11_64woy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4y6p8"]
 animations = [{
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4px1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7e3u0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kgahj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gkxrl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_64woy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ujqvy")
+}],
+"loop": false,
 "name": &"Attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4px1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7e3u0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4px1m")
+}],
+"loop": true,
+"name": &"Death",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l1wno")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u6np6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_goxp7")
+"texture": ExtResource("2_4px1m")
 }],
 "loop": true,
 "name": &"Idle",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
-"name": &"Walk",
-"speed": 5.0
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4px1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gkxrl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_64woy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_64woy")
+}],
+"loop": false,
+"name": &"Telegraph",
+"speed": 30.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gru1c"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_l1wno"]
+radius = 21.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_l1wno")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -18)
+position = Vector2(2.38419e-07, -1.19209e-07)
+scale = Vector2(0.0845, 0.0845)
 sprite_frames = SubResource("SpriteFrames_4y6p8")
-animation = &"Attack"
-flip_h = true
+animation = &"Telegraph"
+frame = 2
+frame_progress = 0.992194
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_gru1c")
+position = Vector2(1, -12)
+shape = SubResource("CircleShape2D_l1wno")
 
 [node name="TelegraphTimer" type="Timer" parent="."]
 one_shot = true

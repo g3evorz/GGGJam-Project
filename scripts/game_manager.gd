@@ -13,19 +13,19 @@ var current_enemy_index = 0
 @onready var timing_timer = $TimingWindowTimer
 @onready var result_timer = $ResultTimer
 @onready var cinematic_bars = $CinematicBars
+@onready var pause_menu = $PauseMenu
 
-const STANDOFF_DURATION := 1.2
-const TIMING_WINDOW_DURATION := 0.5
+
+const STANDOFF_DURATION := 2.0
+const TIMING_WINDOW_DURATION := 0.3
 const RESULT_DELAY := 0.7
 
 func _ready() -> void:
 
-	# Connect timer signals
-
-
 	standoff_timer.timeout.connect(_on_stand_off_timer_timeout)
 	timing_timer.timeout.connect(_on_timing_window_timer_timeout)
 	result_timer.timeout.connect(_on_result_timer_timeout)
+	pause_menu.hide()
 	
 	setup_enemies()
 	start_approach()
@@ -135,7 +135,7 @@ func handle_failed_attack():
 	
 	if camera and camera.has_method("shake"):
 		print("→ Camera shake (fail)")
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.15).timeout
 		camera.shake(15.0, 0.4)
 		
 	# Animasi game over
@@ -164,20 +164,51 @@ func _on_result_timer_timeout():
 		print("Moving to next enemy: ", current_enemy_index + 1, "/", enemies.size())
 		start_approach()
 	else:	
-		next_stage()
+		stage_complete()
 
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Pause"):
+		if get_tree().paused:
+			resume_game()
+		else:
+			pause_game()
+
+func pause_game():
+	pause_menu.show()
+	get_tree().paused = true
+	
+
+func resume_game():
+	pause_menu.hide()
+	get_tree().paused = false
+	
+	
 
 func stage_complete():
 	current_state = GameState.GAME_OVER  # Reuse state untuk stage complete
 	
 	# Tunggu sebentar lalu next stage/restart
 	await get_tree().create_timer(3.0).timeout
-	next_stage()
 
 func next_stage():
-	player.start_auto_walk(global_position)
 	await get_tree().create_timer(3.0).timeout
-	get_tree().change_scene_to_file("res://Scene/Boss_Stage.tscn")
+	
 
 func restart_game():
 	get_tree().reload_current_scene()
+
+
+func _on_resume_pressed() -> void:
+	get_tree().paused = false
+	resume_game()
+	
+	
+func _on_home_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scene/Homescreen.tscn")
+	
+
+func _on_restart_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scene/Main_scene.tscn")

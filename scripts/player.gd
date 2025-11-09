@@ -47,6 +47,7 @@ func play_death_animation():
 	
 func enable_attack_window():
 	can_attack = true
+	animated_sprite.play("Telegraph")
 	animated_sprite.modulate = Color(1.2, 1.2, 1.0)  # Visual feedback
 
 func disable_attack_window():

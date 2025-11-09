@@ -1,3 +1,22 @@
-[gd_scene format=3 uid="uid://cpo8qstwioxcr"]
+[gd_scene load_steps=3 format=3 uid="uid://cpo8qstwioxcr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8pcs1"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_acfdl"]
+radius = 13.0
+height = 38.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8pcs1")
+animation = &"Attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_acfdl")
