@@ -164,7 +164,7 @@ func _on_result_timer_timeout():
 		print("Moving to next enemy: ", current_enemy_index + 1, "/", enemies.size())
 		start_approach()
 	else:	
-		stage_complete()
+		next_stage()
 
 
 func stage_complete():
@@ -175,8 +175,9 @@ func stage_complete():
 	next_stage()
 
 func next_stage():
-	# Bisa load stage baru atau restart
-	get_tree().reload_current_scene()
+	player.start_auto_walk(global_position)
+	await get_tree().create_timer(3.0).timeout
+	get_tree().change_scene_to_file("res://Scene/Boss_Stage.tscn")
 
 func restart_game():
 	get_tree().reload_current_scene()

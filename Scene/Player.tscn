@@ -136,7 +136,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Attack",
-"speed": 20.0
+"speed": 22.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -208,7 +208,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk",
-"speed": 17.0
+"speed": 30.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j8lcb"]
@@ -219,9 +219,7 @@ script = ExtResource("1_jvxg0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_j8lcb")
-animation = &"Attack"
-frame = 6
-frame_progress = 1.0
+animation = &"Walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_j8lcb")

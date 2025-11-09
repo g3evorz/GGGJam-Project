@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cff77fv33flsg" path="res://scripts/cinematic_bars.gd" id="5_g3qbw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kx7ml"]
-size = Vector2(1837, 204)
+size = Vector2(8194.5, 204)
 
 [sub_resource type="Animation" id="Animation_1ifoh"]
 length = 0.001
@@ -109,15 +109,21 @@ standoff_zoom = Vector2(1.6, 1.6)
 position = Vector2(-276, 105)
 
 [node name="Enemy1" parent="." groups=["enemies"] instance=ExtResource("2_6ihgc")]
-position = Vector2(111, 104)
+position = Vector2(565, 105)
 
 [node name="Enemy2" parent="." groups=["enemies"] instance=ExtResource("2_6ihgc")]
-position = Vector2(438, 105)
+position = Vector2(1265, 105)
+
+[node name="Enemy3" parent="." groups=["enemies"] instance=ExtResource("2_6ihgc")]
+position = Vector2(2086, 105)
+
+[node name="Enemy4" parent="." groups=["enemies"] instance=ExtResource("2_6ihgc")]
+position = Vector2(3370, 105)
 
 [node name="Ground" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(2, 222)
+position = Vector2(3180.75, 222)
 shape = SubResource("RectangleShape2D_kx7ml")
 
 [node name="TimingWindowTimer" type="Timer" parent="."]

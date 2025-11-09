@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ccm82yr7ube8q"]
+[gd_scene load_steps=0 format=3 uid="uid://ccm82yr7ube8q"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
