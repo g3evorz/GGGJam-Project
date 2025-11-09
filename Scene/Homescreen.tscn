@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0y1ldd7gbhqr"]
+[gd_scene load_steps=21 format=3 uid="uid://c0y1ldd7gbhqr"]
 
 [ext_resource type="Script" uid="uid://c6o7obypkssqu" path="res://scripts/homescreen.gd" id="1_teo4b"]
 [ext_resource type="Texture2D" uid="uid://hr1mlj4ibwql" path="res://Assets/Play (2).png" id="2_twlym"]
@@ -10,6 +10,53 @@
 [ext_resource type="Texture2D" uid="uid://cwb043bk4i26" path="res://Assets/quit.png" id="8_a8ec2"]
 [ext_resource type="Texture2D" uid="uid://b585pac33uiyl" path="res://Assets/quit_clicked.png" id="9_2grpg"]
 [ext_resource type="Texture2D" uid="uid://baya00omwjs87" path="res://Assets/quit_hover.png" id="10_dy736"]
+[ext_resource type="AudioStream" uid="uid://dv62pima8ru5s" path="res://Audio/Oke Gas Prabowo Gibran Paling Pas.wav" id="11_5s3lc"]
+[ext_resource type="Script" uid="uid://b4dehl8wfpnpr" path="res://Scene/audio_control.gd" id="12_8s6ue"]
+[ext_resource type="Script" uid="uid://6omtvs7uqcsr" path="res://Scene/fullscreen_control.gd" id="13_fd04c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_twlym"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5s3lc"]
+bg_color = Color(0.650541, 0.00299296, 0.917998, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.203922)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8s6ue"]
+bg_color = Color(0.414385, 0.00175658, 0.670283, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.203922)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twlym"]
+bg_color = Color(0.662538, 0.27186, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.203922)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fd04c"]
+color = Color(1, 1, 1, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_s4r4x"]
+color = Color(0.247113, 0.439638, 0.799082, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_07okn"]
+color = Color(0.247113, 0.439638, 0.799082, 1)
+thickness = 6
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -36,37 +83,153 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -174.0
-offset_top = -258.0
-offset_right = 1254.0
-offset_bottom = 1401.0
+offset_left = -150.0
+offset_top = -170.0
+offset_right = 1278.0
+offset_bottom = 1489.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.2, 0.2)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="Main button" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 15
 
-[node name="Play" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+[node name="Play" type="TextureButton" parent="MarginContainer/Main button"]
 layout_mode = 2
 texture_normal = ExtResource("2_twlym")
 texture_pressed = ExtResource("3_5s3lc")
 texture_hover = ExtResource("4_8s6ue")
 stretch_mode = 4
 
-[node name="Setting" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+[node name="Setting" type="TextureButton" parent="MarginContainer/Main button"]
 layout_mode = 2
 texture_normal = ExtResource("5_fd04c")
 texture_pressed = ExtResource("6_s4r4x")
 texture_hover = ExtResource("7_07okn")
 
-[node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+[node name="Quit" type="TextureButton" parent="MarginContainer/Main button"]
 layout_mode = 2
 texture_normal = ExtResource("8_a8ec2")
 texture_pressed = ExtResource("9_2grpg")
 texture_hover = ExtResource("10_dy736")
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Setting" to="." method="_on_setting_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.5
+offset_top = -302.0
+offset_right = 199.5
+offset_bottom = -157.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Andy : The Lost Pants Adventure"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_5s3lc")
+autoplay = true
+bus = &"Music"
+
+[node name="Setting" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -348.0
+offset_top = -177.0
+offset_right = 348.0
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Setting"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 59.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Setting"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="Setting"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = 98.5
+offset_right = 123.0
+offset_bottom = 161.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_twlym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5s3lc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8s6ue")
+theme_override_styles/normal = SubResource("StyleBoxFlat_twlym")
+text = "Back"
+
+[node name="Audio_control" type="HSlider" parent="Setting"]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 95.0
+offset_right = 487.0
+offset_bottom = 134.0
+theme_override_styles/slider = SubResource("StyleBoxLine_fd04c")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_s4r4x")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_07okn")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("12_8s6ue")
+audio_bus_name = "Music"
+
+[node name="Fullscreen control" type="CheckBox" parent="Setting"]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 185.0
+offset_right = 510.0
+offset_bottom = 226.0
+text = "Fullscreen"
+script = ExtResource("13_fd04c")
+
+[node name="Label2" type="Label" parent="Setting"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.5
+offset_top = -138.5
+offset_right = 29.5
+offset_bottom = -115.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Volume"
+
+[connection signal="pressed" from="MarginContainer/Main button/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/Main button/Setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="MarginContainer/Main button/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Setting/Back" to="." method="_on_back_setting_pressed"]
+[connection signal="value_changed" from="Setting/Audio_control" to="Setting/Audio_control" method="_on_value_changed"]
+[connection signal="toggled" from="Setting/Fullscreen control" to="Setting/Fullscreen control" method="_on_toggled"]
