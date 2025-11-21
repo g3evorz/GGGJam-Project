@@ -7,6 +7,7 @@ var current_enemy = null
 var enemies = []
 var current_enemy_index = 0
 
+@onready var SwordAttack = $AttackSound
 @onready var player = $Player
 @onready var camera = $Camera2D
 @onready var standoff_timer = $StandOffTimer
@@ -14,6 +15,7 @@ var current_enemy_index = 0
 @onready var result_timer = $ResultTimer
 @onready var cinematic_bars = $CinematicBars
 @onready var pause_menu = $PauseMenu
+@onready var HitsoundMC = $HitSoundMC
 
 
 const STANDOFF_DURATION := 2.0
@@ -114,6 +116,7 @@ func handle_successful_attack():
 	
 	# Animasi attack sukses
 	player.play_attack_animation()
+	SwordAttack.play()
 	if current_enemy:
 		current_enemy.play_defeated_animation()
 		
@@ -140,8 +143,11 @@ func handle_failed_attack():
 		
 	# Animasi game over
 	player.play_death_animation()
+	HitsoundMC.play()
+	
 	if current_enemy:
 		current_enemy.play_attack_animation()
+		SwordAttack.play()
 	
 	# Tunggu sebentar lalu restart
 	await get_tree().create_timer(2.0).timeout

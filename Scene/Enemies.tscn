@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8nuyutlswcx2"]
+[gd_scene load_steps=16 format=3 uid="uid://c8nuyutlswcx2"]
 
 [ext_resource type="Script" uid="uid://cw86vcpks2l3l" path="res://scripts/enemy.gd" id="1_l1wno"]
 [ext_resource type="Texture2D" uid="uid://bqp777cpdv2eb" path="res://Assets/Enemy stand n slash/Enemy stand n slash/1.png" id="2_4px1m"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bybpgvm2plw7u" path="res://Assets/Enemy stand n slash/telegraph/tele_1.png" id="9_gkxrl"]
 [ext_resource type="Texture2D" uid="uid://mkdaxe8qx5br" path="res://Assets/Enemy stand n slash/telegraph/tele_2.png" id="10_64woy"]
 [ext_resource type="Texture2D" uid="uid://bbxstj30wn60w" path="res://Assets/Enemy stand n slash/telegraph/tele_3.png" id="11_64woy"]
+[ext_resource type="AudioStream" uid="uid://do47c1qycsy6u" path="res://Audio/Sword Unsheath 1.ogg.wav" id="12_ujqvy"]
+[ext_resource type="AudioStream" uid="uid://cbme1f7nbblam" path="res://Audio/69_Enemy_death_01.wav" id="13_0x5i4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4y6p8"]
 animations = [{
@@ -97,3 +99,12 @@ shape = SubResource("CircleShape2D_l1wno")
 
 [node name="TelegraphTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="TelegraphSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_ujqvy")
+bus = &"SFX"
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_0x5i4")
+volume_db = 4.125
+bus = &"SFX"

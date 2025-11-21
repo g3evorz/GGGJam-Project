@@ -7,6 +7,7 @@ var game_manager = null
 # Referensi node
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var telegraph_timer = $TelegraphTimer
+@onready var hitsound = $HitSound
 
 # Konstanta
 const TELEGRAPH_DURATION = 0.25  # Durasi visual telegraph (dalam detik)
@@ -36,6 +37,7 @@ func play_defeated_animation():
 		return
 	
 	animated_sprite.play("Death")
+	hitsound.play()
 	var tween = create_tween()
 	tween.tween_property(animated_sprite, "modulate:a", 0.0, 0.5).set_delay(0.2)
 	

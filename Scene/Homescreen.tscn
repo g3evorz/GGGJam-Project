@@ -1,8 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://c0y1ldd7gbhqr"]
+[gd_scene load_steps=24 format=3 uid="uid://c0y1ldd7gbhqr"]
 
 [ext_resource type="Script" uid="uid://c6o7obypkssqu" path="res://scripts/homescreen.gd" id="1_teo4b"]
+[ext_resource type="Texture2D" uid="uid://bhnkq3xfa8xlv" path="res://Assets/background.png" id="2_s4r4x"]
 [ext_resource type="Texture2D" uid="uid://hr1mlj4ibwql" path="res://Assets/Play (2).png" id="2_twlym"]
 [ext_resource type="Texture2D" uid="uid://b1pbxsqfsy87s" path="res://Assets/Play_clicked.png" id="3_5s3lc"]
+[ext_resource type="Texture2D" uid="uid://dl7btm4cbmdak" path="res://Assets/Tile.png" id="3_a8ec2"]
 [ext_resource type="Texture2D" uid="uid://b4w2m3ls61isj" path="res://Assets/play_hover.png" id="4_8s6ue"]
 [ext_resource type="Texture2D" uid="uid://dn242ro6aloux" path="res://Assets/setting.png" id="5_fd04c"]
 [ext_resource type="Texture2D" uid="uid://sl2ihw02vygx" path="res://Assets/setting_clicked.png" id="6_s4r4x"]
@@ -10,9 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://cwb043bk4i26" path="res://Assets/quit.png" id="8_a8ec2"]
 [ext_resource type="Texture2D" uid="uid://b585pac33uiyl" path="res://Assets/quit_clicked.png" id="9_2grpg"]
 [ext_resource type="Texture2D" uid="uid://baya00omwjs87" path="res://Assets/quit_hover.png" id="10_dy736"]
-[ext_resource type="AudioStream" uid="uid://dv62pima8ru5s" path="res://Audio/Oke Gas Prabowo Gibran Paling Pas.wav" id="11_5s3lc"]
-[ext_resource type="Script" uid="uid://b4dehl8wfpnpr" path="res://Scene/audio_control.gd" id="12_8s6ue"]
-[ext_resource type="Script" uid="uid://6omtvs7uqcsr" path="res://Scene/fullscreen_control.gd" id="13_fd04c"]
+[ext_resource type="Script" uid="uid://b4dehl8wfpnpr" path="res://scripts/audio_control.gd" id="12_8s6ue"]
+[ext_resource type="Script" uid="uid://6omtvs7uqcsr" path="res://scripts/fullscreen_control.gd" id="13_fd04c"]
+[ext_resource type="AudioStream" uid="uid://bj4avmsaona2p" path="res://Audio/1- Brave Reaction.mp3" id="14_a8ec2"]
+[ext_resource type="Texture2D" uid="uid://bymt72ms2jp5b" path="res://Assets/Stand n slash/Stand.png" id="16_2grpg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_twlym"]
 
@@ -67,14 +70,35 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_teo4b")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(800, 600)
 layout_mode = 0
 offset_left = -14.0
 offset_top = 1.0
-offset_right = 1266.0
-offset_bottom = 721.0
-color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+offset_right = 1177.0
+offset_bottom = 671.0
+texture = ExtResource("2_s4r4x")
+expand_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-141, 445)
+scale = Vector2(1.33, 1.33)
+texture = ExtResource("3_a8ec2")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(158, 476)
+scale = Vector2(0.495094, 0.439094)
+texture = ExtResource("16_2grpg")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -14.0
+offset_top = 1.0
+offset_right = 1206.0
+offset_bottom = 767.0
+color = Color(0, 0, 0, 0.309804)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -135,9 +159,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_5s3lc")
+stream = ExtResource("14_a8ec2")
 autoplay = true
 bus = &"Music"
+playback_type = 1
 
 [node name="Setting" type="Panel" parent="."]
 layout_mode = 1

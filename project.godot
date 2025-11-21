@@ -24,6 +24,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="GGGjam"
 
+[editor]
+
+version_control/autoload_on_startup=true
+
 [input]
 
 "Attack (Spacebar)"={
@@ -41,3 +45,5 @@ Pause={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

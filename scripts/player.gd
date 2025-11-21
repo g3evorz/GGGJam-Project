@@ -8,6 +8,7 @@ var game_manager = null
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+
 func _ready() -> void:
 	game_manager = get_parent()
 	$AnimatedSprite2D.play("Idle")
@@ -22,6 +23,7 @@ func _physics_process(delta: float) -> void:
 	if is_walking:
 		var direction = (target_position - global_position).normalized()
 		var velocity = direction * SPEED * delta
+		
 		
 		if global_position.distance_to(target_position) > 10:
 			move_and_collide(velocity)
